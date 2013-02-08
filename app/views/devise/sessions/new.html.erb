@@ -1,0 +1,9 @@
+<h2>Войти</h2>
+
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <%= f.email_field :email, placeholder: 'email', :autofocus => true %><br/>
+  <%= f.password_field :password, placeholder: 'пароль' %><br/>
+  <%= f.submit "Войти", class: 'btn btn-primary' %>
+<% end %>
+
+<%= render "devise/shared/links" %>

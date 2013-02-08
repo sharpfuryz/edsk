@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edsk</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="navbar">
+  <div class="navbar-inner">
+  <a href="/" class="brand">EDSK</a>
+  <%= yield :navbar %>
+  <div class="pull-right">
+  <% unless current_user.nil? %>
+  <%= link_to raw('<i class="icon-off"></i> Выйти'), destroy_user_session_path, method: 'delete', class: 'btn' %>
+  <% end %>
+  </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row-fluid">
+  <div class="span12">
+  <%= yield %>
+  </div>
+  </div>
+</div>
+</body>
+</html>
