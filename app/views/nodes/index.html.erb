@@ -5,5 +5,5 @@
 
 <% content_for :navbar do %>
 <%= link_to raw('<i class="icon-plus"></i>Загрузить'), new_node_path, class: 'btn btn-primary' %>
-<a href="/pricing" class="btn btn-info"><%= format_size current_user.stat.current %>/<%= format_size current_user.stat.max %></a>
+<a href="/pricing" class="btn btn-info"><i class="icon-hdd"></i>&nbsp;<%= format_size current_user.stat.current %>/<%= format_size current_user.stat.max %></a>
 <% end%>
