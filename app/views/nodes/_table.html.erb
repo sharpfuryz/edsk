@@ -1,7 +1,7 @@
 <table class="table">
   <tr>
     <th>Файл
-<form class="form-inline" style="display:inline-block;" action="/nodes/search" method="get">
+	<form class="form-inline" style="display:inline-block;" action="/nodes/search" method="get">
   	   <div class="input-append">
 		<input type="text" class="span12" name="query">
   		<button type="submit" class="btn"><i class="icon-search"></i></button>
@@ -12,14 +12,14 @@
     <th>Действия</th>
   </tr>
 <% @nodes.each do |node| %>
-  <tr>
+  <tr id="node_<%= node.id %>">
     <td><%= image_tag ext_img(node.extension) %><%= node.title %></td>
     <td><%= format_size(node.size) %></td>
     <td>
 	<div class="btn-group">
 	<%= link_to raw('<i class="icon-hdd"></i>'), node, class: 'btn' %>
     	<%= link_to raw('<i class="icon-edit"></i>'), edit_node_path(node), class: 'btn' %>
-    	<%= link_to raw('<i class="icon-remove"></i>'), node, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn' %>
+    	<%= link_to raw('<i class="icon-remove"></i>'), node, method: :delete, remote: true, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
         </div> 
    </td>
   </tr>

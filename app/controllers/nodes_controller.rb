@@ -116,6 +116,7 @@ class NodesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to nodes_url }
+      format.js { render text: "$('#node_#{@node.id}').remove();" }
       format.json { head :no_content }
     end
   end
