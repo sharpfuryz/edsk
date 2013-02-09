@@ -1,5 +1,17 @@
 class NodesController < ApplicationController
   before_filter :authenticate_user!
+  
+  # Drag and drop file upload
+  # POST /nodes/dnd
+  def dnd
+	@node = current_user.nodes.new
+	@node.ufile = params[:file]
+	@node.save
+	respond_to do |format|
+	  format.html { render text: 'OK'}
+	  format.json { render json: @node.to_json }
+	end
+  end
 
   # GET /nodes
   # GET /nodes.json
@@ -8,6 +20,17 @@ class NodesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.json { render json: @nodes }
+    end
+  end
+  
+  # Same as index, but for partial, sorting and other stuff
+  # GET /nodes/table
+  # TODO: GET /node/table.json
+  def table
+    @nodes = current_user.nodes.all
+    respond_to do |format|
+      format.html { render partial: "table"}
       format.json { render json: @nodes }
     end
   end

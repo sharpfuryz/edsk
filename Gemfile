@@ -24,6 +24,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'carrierwave'
 gem 'mime-types'
+gem 'rack-raw-upload'
 # DEv
 gem 'binding_of_caller'
 gem 'better_errors'

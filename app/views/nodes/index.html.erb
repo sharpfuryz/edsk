@@ -1,30 +1,7 @@
-<table class="table">
-  <tr>
-    <th>Файл
-<form class="form-inline" style="display:inline-block;" action="/nodes/search" method="get">
-  	   <div class="input-append">
-		<input type="text" class="span12" name="query">
-  		<button type="submit" class="btn"><i class="icon-search"></i></button>
-	   </div>
-	</form>	
-    </th>
-    <th>Размер</th>
-    <th>Действия</th>
-  </tr>
-<% @nodes.each do |node| %>
-  <tr>
-    <td><%= image_tag ext_img(node.extension) %><%= node.title %></td>
-    <td><%= format_size(node.size) %></td>
-    <td>
-	<div class="btn-group">
-	<%= link_to raw('<i class="icon-hdd"></i>'), node, class: 'btn' %>
-    	<%= link_to raw('<i class="icon-edit"></i>'), edit_node_path(node), class: 'btn' %>
-    	<%= link_to raw('<i class="icon-remove"></i>'), node, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn' %>
-        </div> 
-   </td>
-  </tr>
-<% end %>
-</table>
+<%= render partial: "drag" %>
+<div id="main">
+<%= render partial: "table" %>
+</div>
 
 <% content_for :navbar do %>
 <%= link_to raw('<i class="icon-plus"></i>Загрузить'), new_node_path, class: 'btn btn-primary' %>

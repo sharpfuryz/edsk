@@ -64,5 +64,7 @@ module Edsk
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-  end
+    # Drag-and-drop file upload
+    config.middleware.use 'Rack::RawUpload' 
+ end
 end
