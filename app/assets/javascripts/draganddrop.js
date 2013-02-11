@@ -2,7 +2,7 @@ $(document).ready(function() {
     // original code from habr-article
     
     var dropZone = $('#dropZone'),
-        maxFileSize = 100000000; // максимальный размер фалйа - 100 мб.
+        maxFileSize = 100000000; // 100 мб (Also nginx limitations).
     
     // Проверка поддержки браузером
     if (typeof(window.FileReader) == 'undefined') {
@@ -50,14 +50,14 @@ $(document).ready(function() {
     // Показываем процент загрузки
     function uploadProgress(event) {
         var percent = parseInt(event.loaded / event.total * 100);
-        dropZone.text('Загрузка: ' + percent + '%');
+        dropZone.html('Загрузка<br/><div class="progress progress-striped active"><div class="bar" style="width:'+percent+'%;"></div></div>');
     }
     
     // Пост обрабочик
     function stateChange(event) {
         if (event.target.readyState == 4) {
             if (event.target.status == 200) {
-                dropZone.text('Загрузка успешно завершена!');
+                dropZone.html('<i class="icon-share"></i> Для загрузки, перетащите файл сюда.');
 		$.get("/nodes/table",function(data){
 			$('#main').html(data);
 		});

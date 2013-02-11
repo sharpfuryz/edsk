@@ -1,25 +1,26 @@
-<table class="table">
+<table class="table table-hover">
   <tr>
-    <th>Файл
-	<form class="form-inline" style="display:inline-block;" action="/nodes/search" method="get">
+    <th>
+	<div class="form-inline" style="display:inline-block; margin:0 0 0 0;">
   	   <div class="input-append">
-		<input type="text" class="span12" name="query">
-  		<button type="submit" class="btn"><i class="icon-search"></i></button>
+		<input type="text" class="span12" id="search_query">
+  		<button type="submit" class="btn" id="search_btn"><i class="icon-search"></i></button>
 	   </div>
-	</form>	
+	</div>	
     </th>
-    <th>Размер</th>
-    <th>Действия</th>
+    <th style="width:10%;">Изменен</th>
+    <th style="width:5%;">Размер</th>
+    <th style="width:5%;">Действия</th>
   </tr>
 <% @nodes.each do |node| %>
   <tr id="node_<%= node.id %>">
-    <td><%= image_tag ext_img(node.extension) %><%= node.title %></td>
+    <td><%= image_tag(ext_asset(node.extension), size: "32x32", alt: node.extension)%>
+    <%= link_to node.title, gen_show_link(node.extension, node.id) %></td>
+    <td><%= time_ago_in_words(node.updated_at) %> назад</td>
     <td><%= format_size(node.size) %></td>
     <td>
 	<div class="btn-group">
-	<%= link_to raw('<i class="icon-download-alt"></i>'), node, class: 'btn' %>
-    	<%= link_to raw('<i class="icon-edit"></i>'), edit_node_path(node), class: 'btn' %>
-    	<%= link_to raw('<i class="icon-remove"></i>'), node, method: :delete, remote: true, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+	    <%= link_to raw('<i class="icon-remove"></i>'), node, method: :delete, remote: true, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
         </div> 
    </td>
   </tr>

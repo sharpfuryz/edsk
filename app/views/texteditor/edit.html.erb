@@ -1,0 +1,12 @@
+<%= form_tag "/texteditor/save" do %>
+   <%= text_area_tag 'content', @content, style: "width: 100%; min-height: 500px;" %>
+   <%= submit_tag 'Сохранить', class: "btn btn-primary" %>
+   <%= hidden_field_tag 'id', @node.id %>
+<% end %>
+
+<% content_for :navbar do %>
+    <div class="btn-group">
+       <%= link_to "Все файлы", nodes_path, class: "btn" %>
+       <%= link_to raw("<i class='icon-download-alt'></i> Скачать"), node_path(@node), class: "btn" %>
+    </div>
+<% end %>

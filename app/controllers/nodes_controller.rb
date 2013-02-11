@@ -16,7 +16,7 @@ class NodesController < ApplicationController
   # GET /nodes
   # GET /nodes.json
   def index
-    @nodes = current_user.nodes.all
+    @nodes = current_user.nodes.order('updated_at DESC')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -28,20 +28,20 @@ class NodesController < ApplicationController
   # GET /nodes/table
   # TODO: GET /node/table.json
   def table
-    @nodes = current_user.nodes.all
+    @nodes = current_user.nodes.order('updated_at DESC')
     respond_to do |format|
       format.html { render partial: "table"}
       format.json { render json: @nodes }
     end
   end
 
-  # GET /nodes/search
-  # GET /nodes/search.json
+  # POST /nodes/search
+  # POST /nodes/search.json
   def search
     @nodes = current_user.nodes.sbt params[:query]
 
     respond_to do |format|
-      format.html { render template: "nodes/index" }
+      format.html { render partial: "table" }
       format.json { render json: @nodes }
     end
   end
@@ -111,7 +111,9 @@ class NodesController < ApplicationController
   # DELETE /nodes/1.json
   def destroy
     @node = current_user.nodes.find(params[:id])
-    @node.remove_ufile! #No zombie-files
+    Thread.new do
+	@node.remove_ufile! # TODO: Obtain queue
+    end
     @node.destroy
 
     respond_to do |format|

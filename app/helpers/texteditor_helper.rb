@@ -1,0 +1,2 @@
+module TexteditorHelper
+end
