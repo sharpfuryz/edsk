@@ -1,5 +1,18 @@
 class TexteditorController < ApplicationController
   before_filter :authenticate_user!
+
+  def create
+    title = params[:title]
+    filename = "#{Rails.root}/files/#{current_user.id}/#{title}.txt"
+    #file = File.new(filename,"w")
+    #  file.write("Stub")
+    #file.close
+    @node = current_user.nodes.create do |n|
+	n.ufile = File.open(filename,"w")
+    end
+    # Call edit action
+    redirect_to "/editor/#{@node.id}"
+  end
   
   def edit
     @node = current_user.nodes.find params[:id]

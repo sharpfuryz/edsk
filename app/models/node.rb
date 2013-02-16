@@ -1,9 +1,13 @@
 class Node < ActiveRecord::Base
   	belongs_to :user
 	mount_uploader :ufile, UfileUploader
-	attr_accessible :user_id, :mimetype, :extension, :size, :title, :ufile
+	attr_accessible :user_id, :mimetype, :extension, :size, :title, :ufile, :md5digest
 	after_validation :set_attrs
 	after_destroy :recalc
+	
+	def calculate_digest
+	    self.md5digest = Digest::MD5.file(self.ufile.path)
+	end
 	
 	def set_attrs
 	   self.title = self.ufile.identifier

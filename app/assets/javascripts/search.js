@@ -5,4 +5,8 @@ $(document).ready(function(){
 	     $('#main').html(data);
 	  });
 	});
+	$('#new_file_btn').on('click', function(){
+	    var filename = prompt('Имя файла');
+	    window.location = "/texteditor/create?title="+filename;
+	});
 });

@@ -6,7 +6,7 @@
 
 <% content_for :navbar do %>
     <div class="btn-group">
-       <%= link_to "Все файлы", nodes_path, class: "btn" %>
-       <%= link_to raw("<i class='icon-download-alt'></i> Скачать"), node_path(@node), class: "btn" %>
+       <%= link_to raw('<i class="icon-backward"></i> Все файлы'), nodes_path, class: "btn" %>
+       <%= link_to raw("<i class='icon-download-alt'></i> Скачать"), node_path(@node), class: "btn btn-success" %>
     </div>
 <% end %>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edsk</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+</head>
+<body>
+<div class="navbar">
+  <div class="navbar-inner">
+  <a href="/" class="brand">EDSK</a>
+  <%= yield :navbar %>
+  <div class="pull-right">
+  <% unless current_user.nil? %>
+  <%= link_to raw('<i class="icon-off"></i> Выйти'), destroy_user_session_path, method: 'delete', class: 'btn' %>
+  <% end %>
+  </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+    <%= yield :sidebar %>
+    <div class="well well-large">
+    Еще один блок
+    </div>
+    </div>
+    <div class="span10">
+      <%= yield %>
+    </div>
+  </div>
+
+<div class="footer">
+        <p><a href="http://sovremenius.com">Sovremenius.com</a></p>
+</div>
+</div>
+</body>
+</html>

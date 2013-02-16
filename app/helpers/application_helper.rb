@@ -4,13 +4,16 @@ def gen_show_link(ext,node_id)
 # Uberbydlo code; TODO: Refactor this code; Important
     lnk = ""
     if can_text_edit?(ext)
-	lnk = "/texteditor/edit?id=#{node_id}"
+	lnk = "/editor/#{node_id}"
     end
     if can_view?(ext)
-	lnk = "/viewer/image?id=#{node_id}"
+	lnk = "/image/#{node_id}"
+    end
+    if can_video?(ext)
+	lnk = "/video/#{node_id}"
     end
     if lnk == ""
-	lnk = "/nodes/#{node_id}"
+	lnk = "/get/#{node_id}"
     end
     return lnk
 end
@@ -21,6 +24,10 @@ end
 
 def can_view?(ext)
     ApplicationController::EXTENSIONS_IMAGES.include? ext
+end
+
+def can_video?(ext)
+    ApplicationController::EXTENSIONS_VIDEOS.include? ext
 end
 
 def ext_asset(file)

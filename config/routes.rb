@@ -1,9 +1,13 @@
 Edsk::Application.routes.draw do
 
-  get "viewer/image"
-  get "texteditor/edit"
+  # Fancy routes
+  match "/image/:id" => "viewer#image"
+  match "/video/:id" => "viewer#video"
+  match "/editor/:id" => "texteditor#edit"
+  match "/get/:id" => "nodes#show"
   post "texteditor/save"
-
+  get "texteditor/create"
+  
   devise_for :users
   resources :nodes do
   	collection do

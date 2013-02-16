@@ -4,4 +4,7 @@ before_filter :authenticate_user!
     @node = current_user.nodes.find params[:id]
     send_file @node.ufile.path , :disposition => 'inline', :type => "image/#{@node.extension}"
   end
+  def video
+    @node = current_user.nodes.find params[:id]
+  end
 end

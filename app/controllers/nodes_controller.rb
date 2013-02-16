@@ -19,7 +19,7 @@ class NodesController < ApplicationController
     @nodes = current_user.nodes.order('updated_at DESC')
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render layout: 'sidebar' }
       format.json { render json: @nodes }
     end
   end

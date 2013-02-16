@@ -1,9 +1,14 @@
-<%= render partial: "drag" %>
+<% content_for :sidebar do %>
+    <%= render partial: "drag" %>
+<% end%>
 <div id="main">
    <%= render partial: "table" %>
 </div>
 
 <% content_for :navbar do %>
-<%= link_to raw('<i class="icon-plus"></i>Загрузить'), new_node_path, class: 'btn btn-primary' %>
-<a href="/pricing" class="btn btn-info"><i class="icon-hdd"></i>&nbsp;<%= format_size current_user.stat.current %>/<%= format_size current_user.stat.max %></a>
-<% end%>
+<div class="btn-group">
+  <%= link_to raw('<i class="icon-file"></i>Создать'), "#", class: 'btn btn-success', id: 'new_file_btn' %>
+  <%= link_to raw('<i class="icon-plus"></i>Загрузить'), new_node_path, class: 'btn btn-primary' %>
+  <a href="/pricing" class="btn btn-info"><i class="icon-hdd"></i>&nbsp;<%= format_size current_user.stat.current %>/<%= format_size current_user.stat.max %></a>
+</div>
+<% end %>
