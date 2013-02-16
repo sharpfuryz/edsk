@@ -1,5 +1,13 @@
 Edsk::Application.routes.draw do
-
+  
+  namespace :admin do
+    resources :users do
+    member do
+    	get 'add_gb'
+    end
+    end
+    root :to => "users#index"
+  end 
   # Fancy routes
   match "/image/:id" => "viewer#image"
   match "/video/:id" => "viewer#video"

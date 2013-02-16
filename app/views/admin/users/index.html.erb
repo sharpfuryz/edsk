@@ -1,0 +1,32 @@
+<h2>Пользователи</h1>
+<%= link_to 'New User', new_admin_user_path, class: 'btn btn-primary' %>
+<table class="table table-condensed table-hover">
+  <tr>
+    <th>#</th>
+    <th>Email</th>
+    <th>Файлов</th>
+    <th>Последний IP</th>
+    <th>Занято места</th>
+    <th>Доступно места</th>
+    <th></th>
+  </tr>
+
+<% @admin_users.each do |user| %>
+  <tr>
+    <td><%= user.id %></td>
+    <td><%= user.email %></td>
+    <td><%= user.nodes.count %></td>
+    <td><%= user.last_sign_in_ip %></td>
+    <td><%= format_size user.stat.current %></td>
+    <td><%= format_size user.stat.max %></td>
+    <td>
+        <div class="btn-group">
+	<%= link_to 'Добавить 1Gb', "/admin/users/#{user.id}/add_gb", class: 'btn btn-success' %>
+        <%= link_to 'Редактировать', edit_admin_user_path(user), class: 'btn' %>
+	<%= link_to 'Удалить', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+	</div>
+</td>
+  </tr>
+<% end %>
+</table>
+
