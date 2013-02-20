@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130208203524) do
+ActiveRecord::Schema.define(:version => 20130220102758) do
 
   create_table "nodes", :force => true do |t|
     t.integer  "user_id"
@@ -20,8 +20,11 @@ ActiveRecord::Schema.define(:version => 20130208203524) do
     t.string   "mimetype"
     t.string   "size"
     t.string   "ufile"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "description"
+    t.string   "checksum"
+    t.boolean  "public"
   end
 
   create_table "stats", :force => true do |t|

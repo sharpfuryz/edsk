@@ -95,14 +95,13 @@ class NodesController < ApplicationController
   # PUT /nodes/1.json
   def update
     @node = current_user.nodes.find(params[:id])
-
     respond_to do |format|
       if @node.update_attributes(params[:node])
         format.html { redirect_to nodes_path }
-        format.json { head :no_content }
+        format.json { respond_with_bip(@node) }
       else
         format.html { render action: "edit" }
-        format.json { render json: @node.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip(@node)}
       end
     end
   end

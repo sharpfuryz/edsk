@@ -14,3 +14,8 @@
 body{
 background-image: url('/assets/brushed_alu.png');
 }
+.best_in_place{
+	font-style: italic;
+	color: #999999;
+	padding-left: 20px;
+}

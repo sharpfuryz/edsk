@@ -18,7 +18,9 @@
 <% @nodes.each do |node| %>
   <tr id="node_<%= node.id %>">
     <td><%= image_tag(ext_asset(node.extension), size: "32x32", alt: node.extension)%>
-    <%= link_to node.title, gen_show_link(node.extension, node.id) %></td>
+    <%= link_to node.title, gen_show_link(node.extension, node.id) %>
+    <%= best_in_place node, :description,type: :input,  nil: 'Нажмите чтобы добавить описание' %>	
+    </td>
     <td><%= time_ago_in_words(node.updated_at) %> назад</td>
     <td><%= format_size(node.size) %></td>
     <td>

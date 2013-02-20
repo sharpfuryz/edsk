@@ -26,6 +26,7 @@ gem 'carrierwave'
 gem 'mime-types'
 gem 'rack-raw-upload'
 gem 'russian'
+gem 'best_in_place'
 # DEv
 gem 'binding_of_caller'
 gem 'better_errors'

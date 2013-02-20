@@ -9,4 +9,5 @@ $(document).ready(function(){
 	    var filename = prompt('Имя файла');
 	    window.location = "/texteditor/create?title="+filename;
 	});
+	$('.best_in_place').best_in_place();
 });
